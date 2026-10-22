@@ -39,3 +39,14 @@ Or without activating:
 ```
 
 Deactivate the venv with `deactivate`.
+
+## Parsing hand histories
+
+Put GGPoker `.txt` hand histories in `data/raw/`, then with the venv active:
+
+```powershell
+python -m poker_analyzer.parser
+```
+
+It reports how many hands parsed, any that failed, any lines it didn't recognize,
+and any hands whose chip totals don't add up. You can also pass specific files or folders.

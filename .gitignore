@@ -1,5 +1,7 @@
 .venv/
 data/
+reports/
 __pycache__/
 *.db
 *.egg-info/
+.playwright-mcp/

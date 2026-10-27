@@ -186,7 +186,8 @@ def _insert_hand(conn: sqlite3.Connection, session_id: int, hand: Hand, session_
             " cashout_risk_cents) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 hand.hand_id, players[p], s.seat, positions.get(p), cents(s.stack), int(p in hand.dealt_in),
-                _cards(shown or (hand.hero_cards if p == hand.hero else None)), int(shown is not None),
+                # Hero's dealt cards win: a player may show just one of their two cards.
+                _cards(hand.hero_cards if p == hand.hero else shown), int(shown is not None),
                 cents(invested), cents(collected), cents(collected - invested),
                 cents(result.time_bank) if result and result.time_bank else 0,
                 int(bool(cashout and cashout.chose)),

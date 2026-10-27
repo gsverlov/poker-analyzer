@@ -63,3 +63,12 @@ hand is stored twice. Hands it can't read are listed with the reason and retried
 
 Hand timestamps are stored exactly as written. Their time zone is the single
 `HAND_HISTORY_TIMEZONE` setting in `src/poker_analyzer/settings.py`.
+
+## Preflop report
+
+```powershell
+python -m poker_analyzer.preflop_report
+```
+
+Reads `data/poker.db` and writes `reports/preflop.html`, a single file you can open in a browser.
+All-in equities are cached in `data/equity_cache.json`, so only the first run is slow (a few minutes).

@@ -1,0 +1,51 @@
+Poker Hand #HD142742656: Hold'em No Limit ($0.1/$0.25) - 2026/09/06 01:09:11
+Table 'NLHPurple9' 6-max Seat #3 is the button
+Seat 1: 5ae6ae1 ($25.46 in chips)
+Seat 2: Hero ($29.61 in chips)
+Seat 3: 301c4cf ($11.69 in chips)
+Seat 4: 62467b8b ($25.1 in chips)
+Seat 5: f7d21c5a ($6.95 in chips)
+Seat 6: 225c53df ($25 in chips)
+62467b8b: posts small blind $0.1
+f7d21c5a: posts big blind $0.25
+*** HOLE CARDS ***
+Dealt to 5ae6ae1 
+Dealt to Hero [6d 5d]
+Dealt to 301c4cf 
+Dealt to 62467b8b 
+Dealt to f7d21c5a 
+Dealt to 225c53df 
+225c53df: folds
+5ae6ae1: folds
+Hero: raises $0.5 to $0.75
+301c4cf: calls $0.75
+62467b8b: folds
+f7d21c5a: calls $0.5
+*** FLOP *** [Js 4c Jh]
+f7d21c5a: bets $0.78
+Hero: calls $0.78
+301c4cf: raises $1.55 to $2.33
+f7d21c5a: calls $1.55
+Hero: folds
+*** TURN *** [Js 4c Jh] [4s]
+f7d21c5a: checks
+301c4cf: bets $7.79
+f7d21c5a: calls $3.87 and is all-in
+Uncalled bet ($3.92) returned to 301c4cf
+301c4cf: shows [9c Ks] (two pair, Jacks and Fours)
+f7d21c5a: shows [4d Ac] (a full house, Fours full of Jacks)
+f7d21c5a: Chooses to EV Cashout
+*** RIVER *** [Js 4c Jh 4s] [Jd]
+f7d21c5a: Receives Cashout ($6.78)
+*** SHOWDOWN ***
+301c4cf collected $7.26 from pot
+f7d21c5a collected $7.26 from pot
+*** SUMMARY ***
+Total pot $15.53 | Rake $0.76 | Jackpot $0.25 | Bingo $0 | Fortune $0 | Tax $0
+Board [Js 4c Jh 4s Jd]
+Seat 1: 5ae6ae1 folded before Flop (didn't bet)
+Seat 2: Hero folded on the Flop
+Seat 3: 301c4cf (button) showed [9c Ks] and won ($7.26) with a full house, Jacks full of Fours
+Seat 4: 62467b8b (small blind) folded before Flop
+Seat 5: f7d21c5a (big blind) showed [4d Ac] and won ($0) with a full house, Jacks full of Fours, EV Cashout ($14.04)
+Seat 6: 225c53df folded before Flop (didn't bet)

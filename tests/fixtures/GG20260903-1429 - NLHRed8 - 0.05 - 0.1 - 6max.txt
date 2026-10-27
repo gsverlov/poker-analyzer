@@ -1,0 +1,46 @@
+Poker Hand #HD142373187: Hold'em No Limit ($0.05/$0.1) - 2026/09/03 11:42:21
+Table 'NLHRed8' 6-max Seat #1 is the button
+Seat 1: faa79dfd ($14 in chips)
+Seat 2: adf0989 ($11.6 in chips)
+Seat 3: a3a684e8 ($13.93 in chips)
+Seat 4: Hero ($10.16 in chips)
+Seat 5: f49bade2 ($10 in chips)
+Seat 6: 4c6a8ff3 ($10.11 in chips)
+adf0989: posts small blind $0.05
+a3a684e8: posts big blind $0.1
+*** HOLE CARDS ***
+Dealt to faa79dfd 
+Dealt to adf0989 
+Dealt to a3a684e8 
+Dealt to Hero [Ac Ah]
+Dealt to f49bade2 
+Dealt to 4c6a8ff3 
+Hero: raises $0.2 to $0.3
+f49bade2: folds
+4c6a8ff3: folds
+faa79dfd: folds
+adf0989: calls $0.25
+a3a684e8: folds
+*** FLOP *** [7h Ad Ts]
+adf0989: checks
+Hero: checks
+*** TURN *** [7h Ad Ts] [Kh]
+adf0989: checks
+Hero: bets $0.24
+adf0989: calls $0.24
+*** RIVER *** [7h Ad Ts Kh] [9h]
+adf0989: bets $1.18
+Hero: calls $1.18
+adf0989: shows [7c 7d] (three of a kind, Sevens)
+Hero: shows [Ac Ah] (three of a kind, Aces)
+*** SHOWDOWN ***
+Hero collected $3.27 from pot
+*** SUMMARY ***
+Total pot $3.54 | Rake $0.17 | Jackpot $0.1 | Bingo $0 | Fortune $0 | Tax $0
+Board [7h Ad Ts Kh 9h]
+Seat 1: faa79dfd (button) received ($0.02) from time bank card, folded before Flop (didn't bet)
+Seat 2: adf0989 (small blind) received ($0.02) from time bank card, showed [7c 7d] and lost with three of a kind, Sevens
+Seat 3: a3a684e8 (big blind) received ($0.02) from time bank card, folded before Flop
+Seat 4: Hero bought time bank card ($0.1), showed [Ac Ah] and won ($3.27) with three of a kind, Aces
+Seat 5: f49bade2 received ($0.02) from time bank card, folded before Flop (didn't bet)
+Seat 6: 4c6a8ff3 received ($0.02) from time bank card, folded before Flop (didn't bet)

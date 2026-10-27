@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from poker_analyzer.parser import Action, PotWin, UncalledBet, parse_file, parse_text
+from poker_analyzer.parser import Action, Cashout, PotWin, UncalledBet, parse_file, parse_text
 
 FIXTURE = Path(__file__).parent / "fixtures" / "sample_hands.txt"
 RAW_DIR = Path(__file__).parent.parent / "data" / "raw"
@@ -132,6 +132,60 @@ def test_misread_amount_triggers_warning():
     text = FIXTURE.read_text(encoding="utf-8").split("\n\n\n")[0].replace("collected $0.57", "collected $0.75")
     (hand,) = parse_text(text).hands
     assert any("total pot" in w for w in hand.warnings)
+
+
+def fixture_hand(file_name, hand_id):
+    result = parse_file(Path(__file__).parent / "fixtures" / file_name)
+    assert result.all_unrecognized() == []
+    hand = next(h for h in result.hands if h.hand_id == hand_id)
+    assert hand.warnings == []
+    return hand
+
+
+def test_run_it_twice():
+    h = fixture_hand("GG20260902-0500 - NLHRed13 - 0.05 - 0.1 - 6max.txt", "HD142177979")
+    assert h.run_count == 2
+    assert h.boards == [["8h", "Tc", "6c", "7s", "4h"], ["Qc", "3s", "9s", "4c", "3c"]]
+    assert h.collected == [PotWin("67345e37", D("4.44"), 1), PotWin("67345e37", D("4.43"), 2)]
+    winner = next(r for r in h.results if r.player == "67345e37")
+    assert (winner.outcome, winner.amount) == ("showed_won", D("8.87"))
+    assert [(r.won, r.amount, r.description) for r in winner.runs] == [
+        (True, D("4.44"), "a straight, Ten to Six"),
+        (True, D("4.43"), "a full house, Nines full of Threes"),
+    ]
+
+
+def test_run_three_times_from_the_river():
+    h = fixture_hand("GG20260903-2100 - NLHRed16 - 0.05 - 0.1 - 6max.txt", "HD142412546")
+    assert h.run_count == 3
+    assert [b[-1] for b in h.boards] == ["7s", "8s", "8d"]
+    assert h.boards[1][:4] == h.boards[0][:4]
+    # Every street is labelled FIRST, but the betting still lands on the right street.
+    assert [a.street for a in h.actions if a.action == "bet"] == ["flop", "turn"]
+    loser = next(r for r in h.results if r.player == "3ffcf39c")
+    assert [r.won for r in loser.runs] == [False, False, False]
+
+
+def test_straddles_and_dead_blinds():
+    h = fixture_hand("GG20260917-0331 - NLHRed2 - 0.05 - 0.1 - 6max.txt", "HD144262027")
+    assert [(a.action, a.raise_to) for a in h.actions if a.player == "328eb02c"] == [
+        ("straddle", D("0.2")), ("straddle", D("0.4")), ("straddle", D("0.8")), ("straddle", D("1.6")),
+    ]
+    assert h.committed()["328eb02c"] == D("1.6")
+    h = fixture_hand("GG20260902-0500 - NLHRed13 - 0.05 - 0.1 - 6max.txt", "HD142176975")
+    assert Action("preflop", "4df181ab", "post_dead", D("0.05")) in h.actions
+    assert h.committed()["4df181ab"] == D("0.15")
+
+
+def test_ev_cashout_and_time_bank():
+    h = fixture_hand("GG20260906-0504 - NLHPurple9 - 0.1 - 0.25 - 6max.txt", "HD142742656")
+    assert h.cashouts["f7d21c5a"] == Cashout(chose=True, received=D("6.78"))
+    assert next(r for r in h.results if r.player == "f7d21c5a").cashout_received == D("14.04")
+    h = fixture_hand("GG20260902-0500 - NLHRed13 - 0.05 - 0.1 - 6max.txt", "HD142177755")
+    assert h.cashouts["711c6b1b"] == Cashout(chose=True, risk_paid=D("5.24"))
+    h = fixture_hand("GG20260903-1429 - NLHRed8 - 0.05 - 0.1 - 6max.txt", "HD142373187")
+    assert {r.player: r.time_bank for r in h.results}["Hero"] == D("-0.1")
+    assert sum(r.time_bank for r in h.results) == 0
 
 
 @pytest.mark.skipif(not any(RAW_DIR.glob("*.txt")), reason="no hand histories in data/raw")

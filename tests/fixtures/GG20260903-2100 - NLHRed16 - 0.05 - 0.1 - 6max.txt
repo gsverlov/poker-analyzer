@@ -1,0 +1,48 @@
+Poker Hand #HD142412546: Hold'em No Limit ($0.05/$0.1) - 2026/09/03 17:14:50
+Table 'NLHRed16' 6-max Seat #1 is the button
+Seat 1: Hero ($8.64 in chips)
+Seat 3: 3ffcf39c ($12.05 in chips)
+Seat 4: cf8467e8 ($6.56 in chips)
+Seat 6: e2a37ebe ($27.64 in chips)
+3ffcf39c: posts small blind $0.05
+cf8467e8: posts big blind $0.1
+*** HOLE CARDS ***
+Dealt to Hero [Td Qd]
+Dealt to 3ffcf39c 
+Dealt to cf8467e8 
+Dealt to e2a37ebe 
+e2a37ebe: raises $0.2 to $0.3
+Hero: raises $0.38 to $0.68
+3ffcf39c: raises $1.32 to $2
+cf8467e8: folds
+e2a37ebe: calls $1.7
+Hero: calls $1.32
+*** FIRST FLOP *** [4h 6d 4d]
+3ffcf39c: bets $2.02
+e2a37ebe: folds
+Hero: calls $2.02
+*** FIRST TURN *** [4h 6d 4d] [Th]
+3ffcf39c: bets $5.07
+Hero: calls $4.62 and is all-in
+Uncalled bet ($0.45) returned to 3ffcf39c
+3ffcf39c: shows [2h 2d] (two pair, Fours and Twos)
+Hero: shows [Td Qd] (two pair, Tens and Fours)
+*** FIRST RIVER *** [4h 6d 4d Th] [7s]
+*** SECOND RIVER *** [4h 6d 4d Th] [8s]
+*** THIRD RIVER *** [4h 6d 4d Th] [8d]
+*** FIRST SHOWDOWN ***
+Hero collected $6.2 from pot
+*** SECOND SHOWDOWN ***
+Hero collected $6.18 from pot
+*** THIRD SHOWDOWN ***
+Hero collected $6.18 from pot
+*** SUMMARY ***
+Total pot $19.38 | Rake $0.72 | Jackpot $0.1 | Bingo $0 | Fortune $0 | Tax $0
+Hand was run three times
+FIRST Board [4h 6d 4d Th 7s]
+SECOND Board [8s]
+THIRD Board [8d]
+Seat 1: Hero (button) showed [Td Qd] and won ($6.2) with two pair, Tens and Fours, and won ($6.18), and won ($6.18)
+Seat 3: 3ffcf39c (small blind) showed [2h 2d] and lost with two pair, Fours and Twos, and lost, and lost
+Seat 4: cf8467e8 (big blind) folded before Flop
+Seat 6: e2a37ebe folded on the Flop

@@ -50,3 +50,16 @@ python -m poker_analyzer.parser
 
 It reports how many hands parsed, any that failed, any lines it didn't recognize,
 and any hands whose chip totals don't add up. You can also pass specific files or folders.
+
+## Importing into the database
+
+```powershell
+python -m poker_analyzer.importer
+```
+
+Imports every `.txt` file in `data/raw/` into `data/poker.db` (SQLite) and writes the full
+report to `data/import_report.txt`. It's safe to re-run: imported files are skipped and no
+hand is stored twice. Hands it can't read are listed with the reason and retried next run.
+
+Hand timestamps are stored exactly as written. Their time zone is the single
+`HAND_HISTORY_TIMEZONE` setting in `src/poker_analyzer/settings.py`.

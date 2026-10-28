@@ -1,0 +1,29 @@
+Poker Hand #HD142500181: Hold'em No Limit ($0.05/$0.1) - 2026/09/04 11:10:34
+Table 'NLHRed3' 6-max Seat #2 is the button
+Seat 2: be45ecf9 ($9.46 in chips)
+Seat 3: Hero ($8.8 in chips)
+Seat 5: a75eddb8 ($7.7 in chips)
+Hero: posts small blind $0.05
+a75eddb8: posts big blind $0.1
+*** HOLE CARDS ***
+Dealt to be45ecf9 
+Dealt to Hero [6c Qh]
+Dealt to a75eddb8 
+be45ecf9: raises $0.15 to $0.25
+Hero: folds
+a75eddb8: calls $0.15
+*** FLOP *** [3h Kc Kd]
+a75eddb8: checks
+be45ecf9: bets $0.28
+a75eddb8: folds
+Uncalled bet ($0.28) returned to be45ecf9
+*** SHOWDOWN ***
+be45ecf9 collected $0.53 from pot
+*** SUMMARY ***
+Total pot $0.55 | Rake $0.02 | Jackpot $0 | Bingo $0 | Fortune $0 | Tax $0
+Board [3h Kc Kd]
+Seat 2: be45ecf9 (button) won ($0.53)
+Seat 3: Hero (small blind) folded before Flop
+Seat 5: a75eddb8 (big blind) folded on the Flop
+
+

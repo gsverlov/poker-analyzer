@@ -72,3 +72,13 @@ python -m poker_analyzer.preflop_report
 
 Reads `data/poker.db` and writes `reports/preflop.html`, a single file you can open in a browser.
 All-in equities are cached in `data/equity_cache.json`, so only the first run is slow (a few minutes).
+
+## Preflop vs chart
+
+```powershell
+python -m poker_analyzer.chart_report
+```
+
+Compares your preflop decisions with the solver charts in `charts/pokalab_6max.json` and writes
+`reports/preflop_vs_chart.html`: how often you're in line with the chart, the biggest leaks, the spots
+you already play well, and a grid of yours next to the chart's for every spot.

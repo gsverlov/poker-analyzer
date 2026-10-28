@@ -1,0 +1,46 @@
+Poker Hand #HD149173672: Hold'em No Limit ($0.05/$0.1) - 2026/10/20 23:20:58
+Table 'NLHRed6' 6-max Seat #2 is the button
+Seat 1: b6766376 ($14.58 in chips)
+Seat 2: bf0ebec1 ($14.82 in chips)
+Seat 3: d3d8cc45 ($8.95 in chips)
+Seat 4: 53aec07b ($10 in chips)
+Seat 5: f42af57b ($10.82 in chips)
+Seat 6: Hero ($6.31 in chips)
+d3d8cc45: posts small blind $0.05
+53aec07b: posts big blind $0.1
+*** HOLE CARDS ***
+Dealt to b6766376 
+Dealt to bf0ebec1 
+Dealt to d3d8cc45 
+Dealt to 53aec07b 
+Dealt to f42af57b 
+Dealt to Hero [7h Jh]
+f42af57b: folds
+Hero: raises $0.2 to $0.3
+b6766376: folds
+bf0ebec1: raises $0.75 to $1.05
+d3d8cc45: folds
+53aec07b: folds
+Hero: calls $0.75
+*** FLOP *** [5h 2c 8h]
+Hero: checks
+bf0ebec1: bets $1.13
+Hero: raises $4.13 to $5.26 and is all-in
+bf0ebec1: calls $4.13
+Hero: shows [7h Jh] (Jack high)
+bf0ebec1: shows [Qc Qd] (a pair of Queens)
+*** TURN *** [5h 2c 8h] [8s]
+*** RIVER *** [5h 2c 8h 8s] [Kc]
+*** SHOWDOWN ***
+bf0ebec1 collected $12.04 from pot
+*** SUMMARY ***
+Total pot $12.77 | Rake $0.63 | Jackpot $0.1 | Bingo $0 | Fortune $0 | Tax $0
+Board [5h 2c 8h 8s Kc]
+Seat 1: b6766376 folded before Flop (didn't bet)
+Seat 2: bf0ebec1 (button) showed [Qc Qd] and won ($12.04) with two pair, Queens and Eights
+Seat 3: d3d8cc45 (small blind) folded before Flop
+Seat 4: 53aec07b (big blind) folded before Flop
+Seat 5: f42af57b folded before Flop (didn't bet)
+Seat 6: Hero showed [7h Jh] and lost with a pair of Eights
+
+

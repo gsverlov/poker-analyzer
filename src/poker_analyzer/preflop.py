@@ -61,6 +61,13 @@ class Decision:
     result_bb: float
     all_in_ev: bool  # result uses all-in equity
     other_kind: str | None = None  # what the "other" situation was
+    session_id: int = 0
+    players: int = 0  # players dealt in
+    hero_stack_bb: float = 0.0  # starting stacks
+    villain_stack_bb: float | None = None
+    max_other_stack_bb: float = 0.0  # biggest starting stack among the other players
+    others_in: int = 0  # players besides Hero and the villain who called or raised before this decision
+    faced_all_in: bool = False  # the raise Hero faced was all-in
 
     @property
     def size_bucket(self) -> str | None:
@@ -134,6 +141,7 @@ HAND_GROUPS = [
 class _Seat:
     position: str | None
     hole_cards: str | None
+    stack: int
     invested: int
     collected: int
     is_hero: bool
@@ -153,10 +161,10 @@ class _Action:
 def _load(conn: sqlite3.Connection):
     seats: dict[str, dict[int, _Seat]] = defaultdict(dict)
     for r in conn.execute(
-        "SELECT s.hand_id, s.player_id, s.position, s.hole_cards, s.invested_cents, s.collected_cents, p.is_hero"
-        " FROM seats s JOIN players p ON p.id = s.player_id"
+        "SELECT s.hand_id, s.player_id, s.position, s.hole_cards, s.stack_cents, s.invested_cents, s.collected_cents,"
+        " p.is_hero FROM seats s JOIN players p ON p.id = s.player_id"
     ):
-        seats[r[0]][r[1]] = _Seat(r[2], r[3], r[4], r[5], bool(r[6]))
+        seats[r[0]][r[1]] = _Seat(r[2], r[3], r[4], r[5], r[6], bool(r[7]))
     actions: dict[str, list[_Action]] = defaultdict(list)
     for r in conn.execute(
         "SELECT hand_id, seq, street, player_id, action, amount_cents, raise_to_cents, is_all_in FROM actions"
@@ -164,11 +172,11 @@ def _load(conn: sqlite3.Connection):
     ):
         actions[r[0]].append(_Action(r[1], r[2], r[3], r[4], r[5], r[6], bool(r[7])))
     hands = conn.execute(
-        "SELECT hand_id, big_blind_cents, total_pot_cents,"
+        "SELECT hand_id, session_id, big_blind_cents, total_pot_cents,"
         " rake_cents + jackpot_cents + bingo_cents + fortune_cents + tax_cents, board FROM hands ORDER BY hand_id"
     ).fetchall()
-    for hand_id, bb, pot, fees, board in hands:
-        yield hand_id, bb, pot, fees, (board or "").split(), seats[hand_id], actions[hand_id]
+    for hand_id, session_id, bb, pot, fees, board in hands:
+        yield hand_id, session_id, bb, pot, fees, (board or "").split(), seats[hand_id], actions[hand_id]
 
 
 def _chips_added(actions: list[_Action]) -> list[int]:
@@ -243,7 +251,7 @@ def _all_in_take(hero: int, pot: int, fees: int, board: list[str], seats, action
 def hero_decisions(conn: sqlite3.Connection, equity_cache: Path | None = None) -> DecisionSet:
     out = DecisionSet()
     cache = _EquityCache(equity_cache)
-    for hand_id, bb, pot, fees, board, seats, actions in _load(conn):
+    for hand_id, session_id, bb, pot, fees, board, seats, actions in _load(conn):
         out.hands_seen += 1
         hero = next(p for p, s in seats.items() if s.is_hero)
         position = {p: s.position for p, s in seats.items()}
@@ -281,6 +289,7 @@ def hero_decisions(conn: sqlite3.Connection, equity_cache: Path | None = None) -
         raises: list[_Action] = []
         limpers: list[int] = []
         callers: list[int] = []
+        voluntary: set[int] = set()  # players who have called or raised
         previous: Decision | None = None
         hero_raise_level: int | None = None  # raises before Hero's latest raise: 0 = open, 1 = 3-bet
         for a in preflop:
@@ -307,6 +316,13 @@ def hero_decisions(conn: sqlite3.Connection, equity_cache: Path | None = None) -
                     result_bb=(hero_take - put_in_after) / bb,
                     all_in_ev=all_in_ev,
                     other_kind=other,
+                    session_id=session_id,
+                    players=len(seats),
+                    hero_stack_bb=seats[hero].stack / bb,
+                    villain_stack_bb=seats[villain].stack / bb if villain is not None else None,
+                    max_other_stack_bb=max(s.stack for p, s in seats.items() if p != hero) / bb,
+                    others_in=len(voluntary - {hero, villain}),
+                    faced_all_in=bool(raises) and raises[-1].all_in,
                 )
                 out.decisions.append(previous)
                 if a.action == "raise":
@@ -314,8 +330,11 @@ def hero_decisions(conn: sqlite3.Connection, equity_cache: Path | None = None) -
             if a.action == "raise":
                 raises.append(a)
                 callers = []
+                voluntary.add(a.player)
             elif a.action in ("call", "check"):
                 (callers if raises else limpers).append(a.player)
+                if a.action == "call":
+                    voluntary.add(a.player)
     cache.save()
     return out
 

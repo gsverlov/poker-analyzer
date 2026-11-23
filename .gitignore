@@ -5,3 +5,4 @@ __pycache__/
 *.db
 *.egg-info/
 .playwright-mcp/
+charts/pokalab_6max.json
